@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TryCamel</string>
+    <string name="parse_error">Unable to send to CamelCamelCamel</string>
 </resources>
