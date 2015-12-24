@@ -1,11 +1,15 @@
 package com.cstewart.android.trycamel;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.test.AndroidTestCase;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class IntentParserTest extends AndroidTestCase {
+
+    private static final UrlData VALID_URL_DATA = new UrlData("http://camelcamelcamel.com/search?q=0134171454", "http://www.amazon.com/Android-Programming-Nerd-Ranch-Guide/dp/0134171454/ref=sr_1_3?ie=UTF8&qid=1438264449&sr=8-3&keywords=android+programming");
 
     private List<UrlData> mUrlData = Arrays.asList(
             new UrlData("0134171454", "http://www.amazon.com/Android-Programming-Nerd-Ranch-Guide/dp/0134171454/ref=sr_1_3?ie=UTF8&qid=1438264449&sr=8-3&keywords=android+programming"),
@@ -20,29 +24,44 @@ public class IntentParserTest extends AndroidTestCase {
     );
 
 
-    public void testParse() {
-
+    public void testParseAmazonId() {
         for (UrlData data : mUrlData) {
-            assertEquals(data.getId(), IntentParser.parseAmazonId(data.getUrl()));
+            assertEquals(data.getExpected(), IntentParser.parseAmazonId(data.getUrl()));
         }
-
     }
 
-    private static class UrlData {
-        private String mUrl;
-        private String mId;
+    public void testIntentParse_validSendExtraText() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, VALID_URL_DATA.getUrl());
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Testing");
 
-        public UrlData(String id, String url) {
-            mId = id;
-            mUrl = url;
-        }
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(VALID_URL_DATA.getExpected(), uri.toString());
+    }
 
-        public String getUrl() {
-            return mUrl;
-        }
+    public void testIntentParse_validSendSubjectText() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "Testing");
+        intent.putExtra(Intent.EXTRA_SUBJECT, VALID_URL_DATA.getUrl());
 
-        public String getId() {
-            return mId;
-        }
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(VALID_URL_DATA.getExpected(), uri.toString());
+    }
+
+    public void testIntentParse_invalidExtras() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "Invalid");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Invalid");
+
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(null, uri);
+    }
+
+    public void testIntentParse_invalidAction() {
+        Intent intent = new Intent("Invalid Action");
+        intent.putExtra(Intent.EXTRA_SUBJECT, VALID_URL_DATA.getUrl());
+
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(null, uri);
     }
 }
