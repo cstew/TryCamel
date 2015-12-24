@@ -64,4 +64,10 @@ public class IntentParserTest extends AndroidTestCase {
         Uri uri = IntentParser.parseIntent(intent);
         assertEquals(null, uri);
     }
+
+    public void testIntentParse_emptyIntent() {
+        Intent intent = new Intent();
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(null, uri);
+    }
 }
