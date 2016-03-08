@@ -3,7 +3,11 @@ package com.cstewart.android.trycamel;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.webkit.URLUtil;
+import android.util.Patterns;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
 
 public class IntentParser {
 
@@ -11,28 +15,39 @@ public class IntentParser {
 
     public static Uri parseIntent(Intent intent) {
 
-        String url = null;
-        if (Intent.ACTION_SEND.equals(intent.getAction())) {
-            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            String extraSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+        List<String> potentialUrls = new ArrayList<>();
+        potentialUrls.add(intent.getStringExtra(Intent.EXTRA_TEXT));
+        potentialUrls.add(intent.getStringExtra(Intent.EXTRA_SUBJECT));
+        potentialUrls.add(intent.getDataString());
 
-            if (!TextUtils.isEmpty(extraText) && URLUtil.isNetworkUrl(extraText)) {
-                url = extraText;
-            } else if (!TextUtils.isEmpty(extraSubject) && URLUtil.isNetworkUrl(extraSubject)) {
-                url = extraSubject;
+        for (String candidate : potentialUrls) {
+            String foundUrl = findUrl(candidate);
+            if (TextUtils.isEmpty(foundUrl)) {
+                continue;
             }
+
+            String amazonId = Uri.encode(foundUrl);
+            if (TextUtils.isEmpty(amazonId)) {
+                return null;
+            }
+
+            return Uri.parse(String.format(CAMEL_URL_FORMAT, amazonId));
         }
 
-        if (TextUtils.isEmpty(url)) {
+        return null;
+    }
+
+    private static String findUrl(String value) {
+        if (TextUtils.isEmpty(value)) {
             return null;
         }
 
-        String amazonId = Uri.encode(url);
-        if (TextUtils.isEmpty(amazonId)) {
-            return null;
+        Matcher matcher = Patterns.WEB_URL.matcher(value);
+        if (matcher.find()) {
+            return matcher.group(0);
         }
 
-        return Uri.parse(String.format(CAMEL_URL_FORMAT, amazonId));
+        return null;
     }
 
 }

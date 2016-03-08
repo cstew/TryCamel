@@ -40,12 +40,23 @@ public class IntentParserTest extends AndroidTestCase {
         intent.putExtra(Intent.EXTRA_SUBJECT, VALID_URL_DATA.getUrl());
 
         Uri uri = IntentParser.parseIntent(intent);
-        assertEquals(null, uri);
+        assertEquals(VALID_URL_DATA.getExpected(), uri.toString());
     }
 
     public void testIntentParse_emptyIntent() {
         Intent intent = new Intent();
         Uri uri = IntentParser.parseIntent(intent);
         assertEquals(null, uri);
+    }
+
+    public void testIntentParse_complexShareIntent() {
+        String shareFormat = "High Bounce Balance Bike Adjustable from 11''-16'' With a Hand Brake(Pink) %1$s";
+        String amazonUrl = "https://www.amazon.com/dp/B00VETQ44W/ref=cm_sw_r_other_awd_inuVwb3EZEFC1";
+        String expectedUrl = "http://camelcamelcamel.com/search?q=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB00VETQ44W%2Fref%3Dcm_sw_r_other_awd_inuVwb3EZEFC1";
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, String.format(shareFormat, amazonUrl));
+
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(expectedUrl, uri.toString());
     }
 }
