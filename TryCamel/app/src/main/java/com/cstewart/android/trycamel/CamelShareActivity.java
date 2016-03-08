@@ -36,12 +36,19 @@ public class CamelShareActivity extends Activity {
             return;
         }
 
-        String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-        String extraSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
         Crashlytics.setString("action", intent.getAction());
         Crashlytics.setString("dataString", intent.getDataString());
-        Crashlytics.setString("extraText", extraText);
-        Crashlytics.setString("extraSubject", extraSubject);
+
+        // Log all extras
+        Bundle bundle = intent.getExtras();
+        for (String key : bundle.keySet()) {
+            Object value = bundle.get(key);
+            if (value != null) {
+                String extraString = String.format("%s %s (%s)", key, value.toString(), value.getClass().getName());
+                Crashlytics.setString("extra", extraString);
+            }
+        }
+
         Crashlytics.logException(new UnsupportedOperationException("Unable to parse " + getIntent().toString()));
     }
 }
