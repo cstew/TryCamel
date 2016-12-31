@@ -12,7 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/TryCamelTheme">
 
-        <activity android:name=".CamelShareActivity">
+        <activity android:name=".tutorial.TutorialActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".share.CamelShareActivity"
+            android:theme="@style/TryCamelThemeBlankTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>

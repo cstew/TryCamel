@@ -1,6 +1,9 @@
 <resources>
 
-    <style name="TryCamelTheme" parent="@android:style/Theme.NoDisplay">
+    <style name="TryCamelTheme" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
+    <style name="TryCamelThemeBlankTheme" parent="@android:style/Theme.NoDisplay">
     </style>
 
 </resources>

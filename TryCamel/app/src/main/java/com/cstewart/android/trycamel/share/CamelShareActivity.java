@@ -1,4 +1,4 @@
-package com.cstewart.android.trycamel;
+package com.cstewart.android.trycamel.share;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.cstewart.android.trycamel.IntentParser;
+import com.cstewart.android.trycamel.R;
 
 public class CamelShareActivity extends Activity {
     private static final String TAG = "CamelShareActivity";

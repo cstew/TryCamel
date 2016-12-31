@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">TryCamel</string>
     <string name="parse_error">Unable to send to CamelCamelCamel</string>
+    <string name="next">Next</string>
+
+    <string name="tutorial_screen_1">Use TryCamel to see the price history of items on Amazon.</string>
+    <string name="tutorial_screen_subtitle_1"></string>
+
+    <string name="tutorial_screen_2">Step 1: Shop as you normally do with the Amazon app or a web browser.</string>
+    <string name="tutorial_screen_subtitle_2"></string>
+
+    <string name="tutorial_screen_3">Step 2: On any product, locate the share button.</string>
+    <string name="tutorial_screen_subtitle_3">You can find it. I believe in you.</string>
+
+    <string name="tutorial_screen_4">Step 3: Use that share button and share with TryCamel</string>
+    <string name="tutorial_screen_subtitle_4"></string>
+
+    <string name="tutorial_screen_5">Step 4: That\'s it. \nTry it now with this link: http://a.co/4ps1EIe</string>
+    <string name="tutorial_screen_subtitle_5">And this app is free? Whoever made this must be the nicest person. </string>
 </resources>
