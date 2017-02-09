@@ -28,8 +28,6 @@ public class IntentParserTest extends AndroidTestCase {
 
     public void testIntentParse_invalidExtras() {
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, "Invalid");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Invalid");
 
         Uri uri = IntentParser.parseIntent(intent);
         assertEquals(null, uri);
@@ -56,6 +54,16 @@ public class IntentParserTest extends AndroidTestCase {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_TEXT, String.format(shareFormat, amazonUrl));
 
+        Uri uri = IntentParser.parseIntent(intent);
+        assertEquals(expectedUrl, uri.toString());
+    }
+
+    public void testIntentParse_textFallback() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "AmazonID");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+
+        String expectedUrl = "http://camelcamelcamel.com/search?q=AmazonID";
         Uri uri = IntentParser.parseIntent(intent);
         assertEquals(expectedUrl, uri.toString());
     }

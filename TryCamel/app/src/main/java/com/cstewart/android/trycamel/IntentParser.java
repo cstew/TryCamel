@@ -20,6 +20,7 @@ public class IntentParser {
         potentialUrls.add(intent.getStringExtra(Intent.EXTRA_SUBJECT));
         potentialUrls.add(intent.getDataString());
 
+        // 1. Hunt for a URL
         for (String candidate : potentialUrls) {
             String foundUrl = findUrl(candidate);
             if (TextUtils.isEmpty(foundUrl)) {
@@ -27,6 +28,17 @@ public class IntentParser {
             }
 
             String amazonId = Uri.encode(foundUrl);
+            if (TextUtils.isEmpty(amazonId)) {
+                return null;
+            }
+
+            return Uri.parse(String.format(CAMEL_URL_FORMAT, amazonId));
+        }
+
+        // 2. Fallback on the EXTRA_TEXT value if there is one
+        String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (!TextUtils.isEmpty(extraText)) {
+            String amazonId = Uri.encode(extraText);
             if (TextUtils.isEmpty(amazonId)) {
                 return null;
             }
