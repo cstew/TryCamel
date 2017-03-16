@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".web.WebViewActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="be3005851f4a97c75dc57abac9980fb5c3c96070"/>
