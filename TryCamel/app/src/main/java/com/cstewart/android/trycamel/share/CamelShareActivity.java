@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.cstewart.android.trycamel.IntentParser;
 import com.cstewart.android.trycamel.R;
-import com.cstewart.android.trycamel.web.WebViewActivity;
 
 public class CamelShareActivity extends Activity {
     private static final String TAG = "CamelShareActivity";
@@ -24,7 +23,8 @@ public class CamelShareActivity extends Activity {
             Toast.makeText(this, R.string.parse_error, Toast.LENGTH_LONG).show();
             logParseException(getIntent());
         } else {
-            Intent shareIntent = WebViewActivity.newIntent(this, camelUri.toString());
+            Intent shareIntent = new Intent(Intent.ACTION_VIEW);
+            shareIntent.setData(camelUri);
             startActivity(shareIntent);
         }
 
