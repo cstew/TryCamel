@@ -19,9 +19,11 @@ import java.util.List;
 public class TutorialActivity extends AppCompatActivity {
 
     private List<Screen> screens = Arrays.asList(
-            new Screen(R.color.amber_500, R.string.tutorial_screen_1, R.string.tutorial_screen_subtitle_1, R.drawable.tutorial_1),
-            new Screen(R.color.brown_500, R.string.tutorial_screen_2, R.string.tutorial_screen_subtitle_2, R.drawable.tutorial_2),
-            new Screen(R.color.green_500, R.string.tutorial_screen_3, R.string.tutorial_screen_subtitle_3, R.drawable.tutorial_3),
+            new Screen(R.color.amber_500, R.string.tutorial_intro, R.string.tutorial_intro_subtitle, R.drawable.tutorial_1),
+            new Screen(R.color.brown_500, R.string.tutorial_intro_2, R.string.tutorial_intro_subtitle_2, R.drawable.tutorial_2),
+            new Screen(R.color.green_500, R.string.tutorial_share_instruction, R.string.tutorial_share_instruction_subtitle, R.drawable.tutorial_amazon_share),
+            new Screen(R.color.green_500, R.string.tutorial_screen_share_browser, R.string.tutorial_screen_share_browser_subtitle, R.drawable.tutorial_browser_share),
+            new Screen(R.color.green_500, R.string.tutorial_screen_share_fake, R.string.tutorial_screen_share_fake_subtitle, R.drawable.tutorial_fake_share),
             new Screen(R.color.light_blue_500, R.string.tutorial_screen_4, R.string.tutorial_screen_subtitle_4, R.drawable.tutorial_4),
             new Screen(R.color.blue_gray_700, R.string.tutorial_screen_5, R.string.tutorial_screen_subtitle_5, R.drawable.tutorial_1)
     );

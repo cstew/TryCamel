@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/TryCamelTheme">
 
-        <activity android:name=".tutorial.TutorialActivity">
+        <activity android:name=".tutorial.TutorialActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

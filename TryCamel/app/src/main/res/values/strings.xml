@@ -3,16 +3,22 @@
     <string name="parse_error">Unable to send to CamelCamelCamel</string>
     <string name="next">Next</string>
 
-    <string name="tutorial_screen_1">Use TryCamel to see the price history of items on Amazon.</string>
-    <string name="tutorial_screen_subtitle_1"></string>
+    <string name="tutorial_intro">Use TryCamel to see the price history of items on Amazon.</string>
+    <string name="tutorial_intro_subtitle"></string>
 
-    <string name="tutorial_screen_2">Step 1: Shop as you normally do with the Amazon app or a web browser.</string>
-    <string name="tutorial_screen_subtitle_2"></string>
+    <string name="tutorial_intro_2">Step 1: Shop as you normally do with the Amazon app or a web browser.</string>
+    <string name="tutorial_intro_subtitle_2"></string>
 
-    <string name="tutorial_screen_3">Step 2: On any product, locate the share button.</string>
-    <string name="tutorial_screen_subtitle_3">You can find it. I believe in you.</string>
+    <string name="tutorial_share_instruction">Step 2: On any product, locate the share button.</string>
+    <string name="tutorial_share_instruction_subtitle">Here\'s what it looks like if you are using the Amazon app.</string>
 
-    <string name="tutorial_screen_4">Step 3: Use that share button and share with TryCamel</string>
+    <string name="tutorial_screen_share_browser">If you are using a web browser, you\'ll need to find the share button in the browser itself.</string>
+    <string name="tutorial_screen_share_browser_subtitle">Usually, it\'s in the menu with the 3 dots in the top right of the screen.</string>
+
+    <string name="tutorial_screen_share_fake">Beware of this share button. Do not use it. </string>
+    <string name="tutorial_screen_share_fake_subtitle">It shares within the Amazon website rather than to the Android system.</string>
+
+    <string name="tutorial_screen_4">Step 3: Use the correct share button and share with TryCamel</string>
     <string name="tutorial_screen_subtitle_4"></string>
 
     <string name="tutorial_screen_5">Step 4: That\'s it. \nTry it now with this link: http://a.co/4ps1EIe</string>
