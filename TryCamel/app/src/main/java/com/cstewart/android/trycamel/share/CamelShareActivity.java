@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.cstewart.android.trycamel.IntentParser;
 import com.cstewart.android.trycamel.R;
+import com.cstewart.android.trycamel.TryCamelPreferences;
 
 public class CamelShareActivity extends Activity {
     private static final String TAG = "CamelShareActivity";
@@ -18,7 +19,8 @@ public class CamelShareActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Uri camelUri = IntentParser.parseIntent(getIntent());
+        TryCamelPreferences preferences = new TryCamelPreferences(this);
+        Uri camelUri = IntentParser.parseIntent(preferences.getUrl(), getIntent());
         if (camelUri == null) {
             Toast.makeText(this, R.string.parse_error, Toast.LENGTH_LONG).show();
             logParseException(getIntent());

@@ -11,9 +11,7 @@ import java.util.regex.Matcher;
 
 public class IntentParser {
 
-    private static final String CAMEL_URL_FORMAT = "http://camelcamelcamel.com/search?q=%1$s";
-
-    public static Uri parseIntent(Intent intent) {
+    public static Uri parseIntent(String urlFormat, Intent intent) {
 
         List<String> potentialUrls = new ArrayList<>();
         potentialUrls.add(intent.getStringExtra(Intent.EXTRA_TEXT));
@@ -32,7 +30,7 @@ public class IntentParser {
                 return null;
             }
 
-            return Uri.parse(String.format(CAMEL_URL_FORMAT, amazonId));
+            return Uri.parse(String.format(urlFormat, amazonId));
         }
 
         // 2. Fallback on the EXTRA_TEXT value if there is one
@@ -43,7 +41,7 @@ public class IntentParser {
                 return null;
             }
 
-            return Uri.parse(String.format(CAMEL_URL_FORMAT, amazonId));
+            return Uri.parse(String.format(urlFormat, amazonId));
         }
 
         return null;

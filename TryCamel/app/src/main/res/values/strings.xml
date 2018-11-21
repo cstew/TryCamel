@@ -1,6 +1,34 @@
 <resources>
     <string name="app_name">TryCamel</string>
+
+    <string-array name="locale_name">
+        <item name="locale_us">United States</item>
+        <item name="locale_australia">Australia</item>
+        <item name="locale_canada">Canada</item>
+        <item name="locale_china">China</item>
+        <item name="locale_france">France</item>
+        <item name="locale_germany">Germany</item>
+        <item name="locale_italy">Italy</item>
+        <item name="locale_japan">Japan</item>
+        <item name="locale_spain">Spain</item>
+        <item name="locale_united_kingdom">United Kingdom</item>
+    </string-array>
+
+    <string-array name="locale_url">
+        <item name="url_us">http://camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_au">http://au.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_ca">http://ca.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_cn">http://cn.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_fr">http://fr.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_de">http://de.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_it">http://it.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_jp">http://jp.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_es">http://es.camelcamelcamel.com/search?q=%1$s</item>
+        <item name="url_uk">http://uk.camelcamelcamel.com/search?q=%1$s</item>
+    </string-array>
+
     <string name="parse_error">Unable to send to CamelCamelCamel</string>
+    <string name="locale">Locale</string>
     <string name="next">Next</string>
 
     <string name="tutorial_intro">Use TryCamel to see the price history of items on Amazon.</string>
@@ -23,4 +51,6 @@
 
     <string name="tutorial_screen_5">Step 4: That\'s it. \nTry it now with this link: http://a.co/4ps1EIe</string>
     <string name="tutorial_screen_subtitle_5">And this app is free? Whoever made this must be the nicest person. </string>
+
+    <string name="chose_amazon_store">Chose Amazon Store</string>
 </resources>

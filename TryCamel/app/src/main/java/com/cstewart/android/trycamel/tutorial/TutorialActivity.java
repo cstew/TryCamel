@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 
 import com.cstewart.android.trycamel.R;
 import com.cstewart.android.trycamel.databinding.ActivityTutorialBinding;
+import com.cstewart.android.trycamel.locale.LocalePickerDialogFragment;
 import com.cstewart.android.trycamel.view.TutorialScreenView;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class TutorialActivity extends AppCompatActivity {
+
+    public static final String TAG_LOCALE_DIALOG = "locale_dialog";
 
     private List<Screen> screens = Arrays.asList(
             new Screen(R.color.amber_500, R.string.tutorial_intro, R.string.tutorial_intro_subtitle, R.drawable.tutorial_1),
@@ -39,6 +42,7 @@ public class TutorialActivity extends AppCompatActivity {
         argbEvaluator = new ArgbEvaluator();
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_tutorial);
+
         tutorialAdapter = new TutorialAdapter(screens);
         binding.viewpager.setAdapter(tutorialAdapter);
         binding.viewpager.addOnPageChangeListener(pageChangeListener);
@@ -46,6 +50,7 @@ public class TutorialActivity extends AppCompatActivity {
         binding.indicator.setViewPager(binding.viewpager);
 
         binding.next.setOnClickListener(nextClickListener);
+        binding.locale.setOnClickListener(localClickListener);
     }
 
     private static class TutorialAdapter extends PagerAdapter {
@@ -123,6 +128,13 @@ public class TutorialActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() + 1, true);
+        }
+    };
+
+    private View.OnClickListener localClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            new LocalePickerDialogFragment().show(getSupportFragmentManager(), TAG_LOCALE_DIALOG);
         }
     };
 }
