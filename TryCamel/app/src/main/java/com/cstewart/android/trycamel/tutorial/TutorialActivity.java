@@ -43,6 +43,8 @@ public class TutorialActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_tutorial);
 
+        updateForwardButtonVisibility(false);
+
         tutorialAdapter = new TutorialAdapter(screens);
         binding.viewpager.setAdapter(tutorialAdapter);
         binding.viewpager.addOnPageChangeListener(pageChangeListener);
@@ -50,7 +52,16 @@ public class TutorialActivity extends AppCompatActivity {
         binding.indicator.setViewPager(binding.viewpager);
 
         binding.next.setOnClickListener(nextClickListener);
+        binding.done.setOnClickListener(doneClickListener);
         binding.locale.setOnClickListener(localClickListener);
+    }
+
+    private void updateForwardButtonVisibility(boolean isLastPage) {
+        int nextButtonVisibility = isLastPage ? View.GONE : View.VISIBLE;
+        binding.next.setVisibility(nextButtonVisibility);
+
+        int doneButtonVisibility = isLastPage ? View.VISIBLE : View.GONE;
+        binding.done.setVisibility(doneButtonVisibility);
     }
 
     private static class TutorialAdapter extends PagerAdapter {
@@ -100,12 +111,12 @@ public class TutorialActivity extends AppCompatActivity {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            boolean isBeforeLastPage = position < tutorialAdapter.getCount() - 1;
+            boolean isLastPage= isLastPage(position);
 
             int currentColor = getColor(position);
             int calculatedColor = currentColor;
 
-            if (isBeforeLastPage) {
+            if (!isLastPage) {
                 int nextColor = getColor(position + 1);
                 calculatedColor = (int) argbEvaluator.evaluate(positionOffset, currentColor, nextColor);
             }
@@ -115,19 +126,29 @@ public class TutorialActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            boolean isAtEnd = position >= tutorialAdapter.getCount() - 1;
-            int nextButtonVisibility = isAtEnd ? View.INVISIBLE : View.VISIBLE;
-            binding.next.setVisibility(nextButtonVisibility);
+            boolean isLastPage = isLastPage(position);
+            updateForwardButtonVisibility(isLastPage);
         }
 
         @Override
         public void onPageScrollStateChanged(int state) { }
+
+        private boolean isLastPage(int position) {
+            return position >= tutorialAdapter.getCount() - 1;
+        }
     };
 
     private View.OnClickListener nextClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() + 1, true);
+        }
+    };
+
+    private View.OnClickListener doneClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
         }
     };
 

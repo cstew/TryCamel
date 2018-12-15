@@ -30,6 +30,7 @@
     <string name="parse_error">Unable to send to CamelCamelCamel</string>
     <string name="locale">Locale</string>
     <string name="next">Next</string>
+    <string name="done">Done</string>
 
     <string name="tutorial_intro">Use TryCamel to see the price history of items on Amazon.</string>
     <string name="tutorial_intro_subtitle"></string>
@@ -50,7 +51,7 @@
     <string name="tutorial_screen_subtitle_4"></string>
 
     <string name="tutorial_screen_5">Step 4: That\'s it. \nTry it now with this link: http://a.co/4ps1EIe</string>
-    <string name="tutorial_screen_subtitle_5">And this app is free? Whoever made this must be the nicest person. </string>
+    <string name="tutorial_screen_subtitle_5"></string>
 
     <string name="chose_amazon_store">Chose Amazon Store</string>
 </resources>
